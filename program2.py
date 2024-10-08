@@ -8,16 +8,9 @@ def decode_message(s: str, p: str) -> bool:
     for i in range(1, n + 1):
         for j in range(1, m + 1):
             if p[i-1] == s[j-1] or p[i-1] == '?':
-                dp[i][j] = dp[i-1][j-1]  
+                dp[i][j] = dp[i-1][j-1]   
             elif p[i-1] == '*':
                
                 dp[i][j] = dp[i-1][j] or dp[i][j-1]
     
     return dp[n][m]
-
-# Test cases
-print(decode_message("aa", "a")) 
-print(decode_message("aa", "*"))   
-print(decode_message("cb", "?a")) 
-print(decode_message("adceb", "*a*b"))  
-print(decode_message("acdcb", "a*c?b")) 
